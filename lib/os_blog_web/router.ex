@@ -23,6 +23,10 @@ defmodule OsBlogWeb.Router do
       pipe_through [:fetch_session, :protect_from_forgery]
       live_dashboard "/dashboard", metrics: OsBlogWeb.Telemetry
     end
+
+    scope "/api" do
+      resources "/managers", ManagerController, except: [:new, :edit]
+    end
   end
 
   # Enables the Swoosh mailbox preview in development.
