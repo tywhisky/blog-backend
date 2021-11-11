@@ -7,6 +7,8 @@ defmodule OsBlogWeb.Router do
 
   scope "/api", OsBlogWeb do
     pipe_through :api
+
+    resources "/managers", ManagerController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
@@ -22,10 +24,6 @@ defmodule OsBlogWeb.Router do
     scope "/" do
       pipe_through [:fetch_session, :protect_from_forgery]
       live_dashboard "/dashboard", metrics: OsBlogWeb.Telemetry
-    end
-
-    scope "/api" do
-      resources "/managers", ManagerController, except: [:new, :edit]
     end
   end
 
