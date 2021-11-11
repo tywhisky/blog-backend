@@ -12,9 +12,9 @@ defmodule OsBlog.AccountsFixtures do
       attrs
       |> Enum.into(%{
         avatar: "some avatar",
-        email: "some email",
+        email: "test@gmail.com",
         name: "some name",
-        password_digest: "some password_digest"
+        password: "some password"
       })
       |> OsBlog.Accounts.create_manager()
 

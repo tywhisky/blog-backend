@@ -20,6 +20,8 @@ config :os_blog, OsBlogWeb.Endpoint,
   secret_key_base: "JZANuHOE6ZqwZvd2cIdzeWdeMOZHbP5Dg6ID2pD3SuI4wUBIhTaSZoXsgyFAzZ3+",
   server: false
 
+config :bcrypt_elixir, :log_rounds, 4
+
 # In test we don't send emails.
 config :os_blog, OsBlog.Mailer, adapter: Swoosh.Adapters.Test
 

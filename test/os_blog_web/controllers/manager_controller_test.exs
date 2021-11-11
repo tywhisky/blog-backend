@@ -7,15 +7,15 @@ defmodule OsBlogWeb.ManagerControllerTest do
 
   @create_attrs %{
     avatar: "some avatar",
-    email: "some email",
+    email: "test@gmail.com",
     name: "some name",
-    password_digest: "some password_digest"
+    password: "some password"
   }
   @update_attrs %{
     avatar: "some updated avatar",
-    email: "some updated email",
-    name: "some updated name",
-    password_digest: "some updated password_digest"
+    email: "test@gmail.com",
+    name: "some name",
+    password: "password"
   }
   @invalid_attrs %{avatar: nil, email: nil, name: nil, password_digest: nil}
 
@@ -32,17 +32,16 @@ defmodule OsBlogWeb.ManagerControllerTest do
 
   describe "create manager" do
     test "renders manager when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.manager_path(conn, :create), manager: @create_attrs)
+      conn = post(conn, Routes.manager_path(conn, :create), @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
       conn = get(conn, Routes.manager_path(conn, :show, id))
 
       assert %{
-               "id" => ^id,
                "avatar" => "some avatar",
-               "email" => "some email",
-               "name" => "some name",
-               "password_digest" => "some password_digest"
+               "email" => "test@gmail.com",
+               "id" => ^id,
+               "name" => "some name"
              } = json_response(conn, 200)["data"]
     end
 
@@ -64,9 +63,8 @@ defmodule OsBlogWeb.ManagerControllerTest do
       assert %{
                "id" => ^id,
                "avatar" => "some updated avatar",
-               "email" => "some updated email",
-               "name" => "some updated name",
-               "password_digest" => "some updated password_digest"
+               "email" => "test@gmail.com",
+               "name" => "some name"
              } = json_response(conn, 200)["data"]
     end
 

@@ -11,7 +11,7 @@ defmodule OsBlogWeb.ManagerController do
     render(conn, "index.json", managers: managers)
   end
 
-  def create(conn, %{"manager" => manager_params}) do
+  def create(conn, manager_params) do
     with {:ok, %Manager{} = manager} <- Accounts.create_manager(manager_params) do
       conn
       |> put_status(:created)

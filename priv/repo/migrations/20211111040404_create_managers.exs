@@ -10,5 +10,7 @@ defmodule OsBlog.Repo.Migrations.CreateManagers do
 
       timestamps()
     end
+
+    create unique_index(:managers, [:email], name: :managers_uniq_email_index)
   end
 end

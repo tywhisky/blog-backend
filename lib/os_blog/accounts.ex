@@ -51,7 +51,7 @@ defmodule OsBlog.Accounts do
   """
   def create_manager(attrs \\ %{}) do
     %Manager{}
-    |> Manager.changeset(attrs)
+    |> Manager.create_changeset(attrs)
     |> Repo.insert()
   end
 
