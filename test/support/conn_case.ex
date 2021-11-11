@@ -1,4 +1,4 @@
-defmodule PersonalBlogWeb.ConnCase do
+defmodule OsBlogWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule PersonalBlogWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use PersonalBlogWeb.ConnCase, async: true`, although
+  by setting `use OsBlogWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -22,17 +22,17 @@ defmodule PersonalBlogWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import PersonalBlogWeb.ConnCase
+      import OsBlogWeb.ConnCase
 
-      alias PersonalBlogWeb.Router.Helpers, as: Routes
+      alias OsBlogWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint PersonalBlogWeb.Endpoint
+      @endpoint OsBlogWeb.Endpoint
     end
   end
 
   setup tags do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(PersonalBlog.Repo, shared: not tags[:async])
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(OsBlog.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end

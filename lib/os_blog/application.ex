@@ -1,4 +1,4 @@
-defmodule PersonalBlog.Application do
+defmodule OsBlog.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -9,20 +9,20 @@ defmodule PersonalBlog.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      PersonalBlog.Repo,
+      OsBlog.Repo,
       # Start the Telemetry supervisor
-      PersonalBlogWeb.Telemetry,
+      OsBlogWeb.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: PersonalBlog.PubSub},
+      {Phoenix.PubSub, name: OsBlog.PubSub},
       # Start the Endpoint (http/https)
-      PersonalBlogWeb.Endpoint
-      # Start a worker by calling: PersonalBlog.Worker.start_link(arg)
-      # {PersonalBlog.Worker, arg}
+      OsBlogWeb.Endpoint
+      # Start a worker by calling: OsBlog.Worker.start_link(arg)
+      # {OsBlog.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: PersonalBlog.Supervisor]
+    opts = [strategy: :one_for_one, name: OsBlog.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -30,7 +30,7 @@ defmodule PersonalBlog.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    PersonalBlogWeb.Endpoint.config_change(changed, removed)
+    OsBlogWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

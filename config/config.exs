@@ -7,15 +7,15 @@
 # General application configuration
 import Config
 
-config :personal_blog,
-  ecto_repos: [PersonalBlog.Repo]
+config :os_blog,
+  ecto_repos: [OsBlog.Repo]
 
 # Configures the endpoint
-config :personal_blog, PersonalBlogWeb.Endpoint,
+config :os_blog, OsBlogWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: PersonalBlogWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: PersonalBlog.PubSub,
-  live_view: [signing_salt: "Z6itheSD"]
+  render_errors: [view: OsBlogWeb.ErrorView, accepts: ~w(json), layout: false],
+  pubsub_server: OsBlog.PubSub,
+  live_view: [signing_salt: "zbMCUEzc"]
 
 # Configures the mailer
 #
@@ -24,20 +24,10 @@ config :personal_blog, PersonalBlogWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :personal_blog, PersonalBlog.Mailer, adapter: Swoosh.Adapters.Local
+config :os_blog, OsBlog.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
-
-# Configure esbuild (the version is required)
-config :esbuild,
-  version: "0.12.18",
-  default: [
-    args:
-      ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
-    cd: Path.expand("../assets", __DIR__),
-    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-  ]
 
 # Configures Elixir's Logger
 config :logger, :console,

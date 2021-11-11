@@ -1,10 +1,10 @@
 import Config
 
 # Configure your database
-config :personal_blog, PersonalBlog.Repo,
+config :os_blog, OsBlog.Repo,
   username: "postgres",
   password: "postgres",
-  database: "personal_blog_dev",
+  database: "os_blog_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,18 +15,15 @@ config :personal_blog, PersonalBlog.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :personal_blog, PersonalBlogWeb.Endpoint,
+config :os_blog, OsBlogWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "jKIKI8KKRQo11Fw6Y7jJWWPAOcsnff/A3t0GlMrJMxXszB3ORDTEg3gFELSuKnr9",
-  watchers: [
-    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
-  ]
+  secret_key_base: "bDzJXtkh9HctD9It/fZfHLCTAStwDUK0WEs8vvtmMTo1ZZid4TM3vLTD2ScE8dke",
+  watchers: []
 
 # ## SSL Support
 #
@@ -51,17 +48,6 @@ config :personal_blog, PersonalBlogWeb.Endpoint,
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
 # different ports.
-
-# Watch static and templates for browser reloading.
-config :personal_blog, PersonalBlogWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/personal_blog_web/(live|views)/.*(ex)$",
-      ~r"lib/personal_blog_web/templates/.*(eex)$"
-    ]
-  ]
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

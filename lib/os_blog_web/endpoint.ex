@@ -1,13 +1,13 @@
-defmodule PersonalBlogWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :personal_blog
+defmodule OsBlogWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :os_blog
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_personal_blog_key",
-    signing_salt: "7TQwiyKG"
+    key: "_os_blog_key",
+    signing_salt: "J5NtVgaQ"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
@@ -18,17 +18,15 @@ defmodule PersonalBlogWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :personal_blog,
+    from: :os_blog,
     gzip: false,
     only: ~w(assets fonts images favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
-    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
-    plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :personal_blog
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :os_blog
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -46,5 +44,5 @@ defmodule PersonalBlogWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug PersonalBlogWeb.Router
+  plug OsBlogWeb.Router
 end

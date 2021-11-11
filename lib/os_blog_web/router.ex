@@ -1,29 +1,13 @@
-defmodule PersonalBlogWeb.Router do
-  use PersonalBlogWeb, :router
-
-  pipeline :browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_live_flash
-    plug :put_root_layout, {PersonalBlogWeb.LayoutView, :root}
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
-  end
+defmodule OsBlogWeb.Router do
+  use OsBlogWeb, :router
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/", PersonalBlogWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
+  scope "/api", OsBlogWeb do
+    pipe_through :api
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", PersonalBlogWeb do
-  #   pipe_through :api
-  # end
 
   # Enables LiveDashboard only for development
   #
@@ -36,8 +20,8 @@ defmodule PersonalBlogWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through :browser
-      live_dashboard "/dashboard", metrics: PersonalBlogWeb.Telemetry
+      pipe_through [:fetch_session, :protect_from_forgery]
+      live_dashboard "/dashboard", metrics: OsBlogWeb.Telemetry
     end
   end
 
@@ -47,7 +31,7 @@ defmodule PersonalBlogWeb.Router do
   # node running the Phoenix server.
   if Mix.env() == :dev do
     scope "/dev" do
-      pipe_through :browser
+      pipe_through [:fetch_session, :protect_from_forgery]
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end

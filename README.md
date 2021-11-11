@@ -1,4 +1,4 @@
-# PersonalBlog
+# OsBlog
 
 To start your Phoenix server:
 

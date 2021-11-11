@@ -1,9 +1,9 @@
-defmodule PersonalBlog.MixProject do
+defmodule OsBlog.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :personal_blog,
+      app: :os_blog,
       version: "0.1.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule PersonalBlog.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {PersonalBlog.Application, []},
+      mod: {OsBlog.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -37,12 +37,7 @@ defmodule PersonalBlog.MixProject do
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.16.0"},
-      {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.5"},
-      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
@@ -64,7 +59,6 @@ defmodule PersonalBlog.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"],
       s: ["phx.server"]
     ]
   end
