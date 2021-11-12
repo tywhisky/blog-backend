@@ -17,6 +17,12 @@ config :os_blog, OsBlogWeb.Endpoint,
   pubsub_server: OsBlog.PubSub,
   live_view: [signing_salt: "zbMCUEzc"]
 
+config :os_blog, OsBlog.Guardian,
+  issuer: "OsBlog",
+  allowed_drift: 2000,
+  ttl: {20, :days},
+  secret_key: "59Vf0qAAzBJmbj7SCg4YNz18TvAx2oiSyntOG+vr4UQ="
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

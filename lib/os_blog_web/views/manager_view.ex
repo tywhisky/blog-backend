@@ -10,6 +10,10 @@ defmodule OsBlogWeb.ManagerView do
     %{data: render_one(manager, ManagerView, "manager.json")}
   end
 
+  def render("login.json", token) do
+    %{data: Map.take(token, [:token])}
+  end
+
   def render("manager.json", %{manager: manager}) do
     %{
       id: manager.id,

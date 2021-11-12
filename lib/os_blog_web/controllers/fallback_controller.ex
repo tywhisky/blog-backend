@@ -21,4 +21,22 @@ defmodule OsBlogWeb.FallbackController do
     |> put_view(OsBlogWeb.ErrorView)
     |> render(:"404")
   end
+
+  # Guardian.Plug.EnsureAuthenticated 验证失败回调
+  def auth_error(conn, _, _) do
+    if String.contains?(conn.request_path, "download") do
+      redirect(conn, external: "#{@dashboard_domain}/login")
+    else
+      render_error(conn, 401, code: :unauthenticated)
+    end
+  end
+
+  defp render_error(conn, status, assigns) do
+    OsBlog.ErrorCode.validate_code!(Keyword.fetch!(assigns, :code))
+
+    conn
+    |> put_status(status)
+    |> put_view(OsBlogWeb.ErrorView)
+    |> render("#{status}.json", assigns)
+  end
 end

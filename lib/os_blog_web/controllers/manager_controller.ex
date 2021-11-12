@@ -40,4 +40,10 @@ defmodule OsBlogWeb.ManagerController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  def login(conn, params) do
+    with {:ok, token} <- Accounts.create_session(params) do
+      render(conn, "login.json", token)
+    end
+  end
 end

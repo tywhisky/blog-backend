@@ -5,9 +5,25 @@ defmodule OsBlogWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :api_auth do
+    plug :accepts, ["json"]
+
+    plug Guardian.Plug.Pipeline,
+      module: OsBlog.Guardian,
+      error_handler: OsBlogWeb.FallbackController
+
+    plug Guardian.Plug.VerifyHeader, scheme: "Bearer"
+    plug Guardian.Plug.LoadResource
+    plug Guardian.Plug.EnsureAuthenticated
+
+    plug OsBlogWeb.Plugs.VerifyMeta
+  end
+
   scope "/api", OsBlogWeb do
     pipe_through :api
+    get "/login", ManagerController, :login
 
+    pipe_through :api_auth
     resources "/managers", ManagerController, except: [:new, :edit]
   end
 
