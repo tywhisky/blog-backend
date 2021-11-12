@@ -24,6 +24,7 @@ defmodule OsBlogWeb.Router do
     get "/login", ManagerController, :login
 
     pipe_through :api_auth
+    resources "/articles", ArticleController, except: [:new, :edit]
     resources "/managers", ManagerController, except: [:new, :edit]
   end
 
