@@ -10,8 +10,7 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :os_blog, OsBlogWeb.Endpoint,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  url: [host: "localhost", port: 8080]
 
 # Do not print debug messages in production
 config :logger, level: :info
