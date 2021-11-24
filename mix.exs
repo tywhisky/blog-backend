@@ -64,7 +64,8 @@ defmodule OsBlog.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      s: ["phx.server"]
+      s: ["phx.server"],
+      p: ["MIX_ENV=prod phx.server &"]
     ]
   end
 end
