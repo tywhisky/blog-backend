@@ -12,7 +12,7 @@ defmodule OsBlog.AccountsTest do
 
     test "list_managers/0 returns all managers" do
       manager_fixture()
-      assert [_] = Accounts.list_managers()
+      assert %{entries: _} = Accounts.list_managers(nil)
     end
 
     test "create_manager/1 with valid data creates a manager" do

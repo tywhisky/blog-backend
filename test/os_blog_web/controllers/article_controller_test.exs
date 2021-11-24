@@ -24,13 +24,13 @@ defmodule OsBlogWeb.ArticleControllerTest do
   describe "index" do
     test "lists all articles", %{conn: conn} do
       conn = get(conn, Routes.article_path(conn, :index))
-      assert json_response(conn, 200)["data"] == []
+      assert json_response(conn, 200)["items"] == []
     end
   end
 
   describe "create article" do
     test "renders article when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.article_path(conn, :create), article: @create_attrs)
+      conn = post(conn, Routes.article_path(conn, :create), @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
       conn = get(conn, Routes.article_path(conn, :show, id))

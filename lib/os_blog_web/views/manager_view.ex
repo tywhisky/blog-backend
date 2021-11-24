@@ -1,9 +1,10 @@
 defmodule OsBlogWeb.ManagerView do
   use OsBlogWeb, :view
   alias OsBlogWeb.ManagerView
+  alias OsBlogWeb.ViewPaginationHelpers
 
-  def render("index.json", %{managers: managers}) do
-    %{data: render_many(managers, ManagerView, "manager.json")}
+  def render("index.json", %{page: page}) do
+    ViewPaginationHelpers.render_page(page, &manager_json/1)
   end
 
   def render("show.json", %{manager: manager}) do
@@ -22,5 +23,15 @@ defmodule OsBlogWeb.ManagerView do
       password_digest: manager.password_digest,
       avatar: manager.avatar
     }
+  end
+
+  def manager_json(manager) do
+    manager
+    |> Map.take([
+      :id,
+      :name,
+      :email,
+      :avatar
+    ])
   end
 end

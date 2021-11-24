@@ -11,8 +11,9 @@ defmodule OsBlog.ArticlesTest do
     @invalid_attrs %{author: nil, content: nil, title: nil}
 
     test "list_articles/0 returns all articles" do
-      article = article_fixture()
-      assert Articles.list_articles() == [article]
+      article_fixture()
+      %{entries: entries} = Articles.list_articles(nil)
+      assert length(entries) == 1
     end
 
     test "get_article!/1 returns the article with given id" do
@@ -35,7 +36,12 @@ defmodule OsBlog.ArticlesTest do
 
     test "update_article/2 with valid data updates the article" do
       article = article_fixture()
-      update_attrs = %{author: "some updated author", content: "some updated content", title: "some updated title"}
+
+      update_attrs = %{
+        author: "some updated author",
+        content: "some updated content",
+        title: "some updated title"
+      }
 
       assert {:ok, %Article{} = article} = Articles.update_article(article, update_attrs)
       assert article.author == "some updated author"

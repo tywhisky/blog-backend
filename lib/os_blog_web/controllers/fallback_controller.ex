@@ -25,7 +25,7 @@ defmodule OsBlogWeb.FallbackController do
   # Guardian.Plug.EnsureAuthenticated 验证失败回调
   def auth_error(conn, _, _) do
     if String.contains?(conn.request_path, "download") do
-      redirect(conn, external: "#{@dashboard_domain}/login")
+      redirect(conn, external: "/login")
     else
       render_error(conn, 401, code: :unauthenticated)
     end

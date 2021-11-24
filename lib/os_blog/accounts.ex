@@ -8,8 +8,9 @@ defmodule OsBlog.Accounts do
 
   alias OsBlog.Accounts.Manager
 
-  def list_managers do
-    Repo.all(Manager)
+  def list_managers(params) do
+    Manager
+    |> Repo.paginate(params)
   end
 
   def get_manager(id), do: Repo.get(Manager, id)

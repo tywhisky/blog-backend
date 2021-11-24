@@ -12,7 +12,7 @@ defmodule OsBlogWeb.ManagerControllerTest do
   describe "index" do
     test "lists all managers", %{conn: conn} do
       conn = get(conn, Routes.manager_path(conn, :index))
-      assert json_response(conn, 401)["data"] == nil
+      assert json_response(conn, 200)["items"] == []
     end
   end
 
@@ -21,7 +21,7 @@ defmodule OsBlogWeb.ManagerControllerTest do
 
     test "renders errors when data is invalid", %{conn: conn, manager: manager} do
       conn = put(conn, Routes.manager_path(conn, :update, manager), manager: @invalid_attrs)
-      assert json_response(conn, 401)["errors"] != %{}
+      assert json_response(conn, 422)["errors"] != %{}
     end
   end
 

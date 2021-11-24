@@ -45,7 +45,10 @@ defmodule OsBlog.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:bcrypt_elixir, "~> 2.0"},
-      {:guardian, "~> 2.1"}
+      {:guardian, "~> 2.1"},
+      {:scrivener, "~> 2.5"},
+      {:scrivener_ecto, "~> 2.0"},
+      {:timex, "~> 3.0"}
     ]
   end
 

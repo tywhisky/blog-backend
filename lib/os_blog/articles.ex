@@ -17,8 +17,9 @@ defmodule OsBlog.Articles do
       [%Article{}, ...]
 
   """
-  def list_articles do
-    Repo.all(Article)
+  def list_articles(params) do
+    Article
+    |> Repo.paginate(params)
   end
 
   @doc """

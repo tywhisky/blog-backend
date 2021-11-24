@@ -6,12 +6,12 @@ defmodule OsBlogWeb.ArticleController do
 
   action_fallback OsBlogWeb.FallbackController
 
-  def index(conn, _params) do
-    articles = Articles.list_articles()
-    render(conn, "index.json", articles: articles)
+  def index(conn, params) do
+    page = Articles.list_articles(params)
+    render(conn, "index.json", page: page)
   end
 
-  def create(conn, %{"article" => article_params}) do
+  def create(conn, article_params) do
     with {:ok, %Article{} = article} <- Articles.create_article(article_params) do
       conn
       |> put_status(:created)

@@ -6,9 +6,9 @@ defmodule OsBlogWeb.ManagerController do
 
   action_fallback OsBlogWeb.FallbackController
 
-  def index(conn, _params) do
-    managers = Accounts.list_managers()
-    render(conn, "index.json", managers: managers)
+  def index(conn, params) do
+    page = Accounts.list_managers(params)
+    render(conn, "index.json", page: page)
   end
 
   def create(conn, manager_params) do
