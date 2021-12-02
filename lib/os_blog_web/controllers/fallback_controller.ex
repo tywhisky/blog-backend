@@ -6,20 +6,33 @@ defmodule OsBlogWeb.FallbackController do
   """
   use OsBlogWeb, :controller
 
-  # This clause handles errors returned by Ecto's insert/update/delete.
-  def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
-    conn
-    |> put_status(:unprocessable_entity)
-    |> put_view(OsBlogWeb.ChangesetView)
-    |> render("error.json", changeset: changeset)
+  def call(conn, {:error, %Ecto.Changeset{} = chset}) do
+    validation_error(conn, chset)
   end
 
-  # This clause is an example of how to handle resources that cannot be found.
+  def call(conn, {:error, :cast_error}) do
+    render_error(conn, 400, code: :bad_request)
+  end
+
+  def call(conn, {:error, :unauthenticated}) do
+    render_error(conn, 401, code: :unauthenticated)
+  end
+
+  # handle bodyguard authorization failure
+  def call(conn, {:error, :unauthorized}) do
+    render_error(conn, 403, code: :unauthorized)
+  end
+
   def call(conn, {:error, :not_found}) do
-    conn
-    |> put_status(:not_found)
-    |> put_view(OsBlogWeb.ErrorView)
-    |> render(:"404")
+    render_error(conn, 404, code: :not_found)
+  end
+
+  def call(conn, {:error, :stale_entry_error}) do
+    render_error(conn, 409, code: :stale_entry_error)
+  end
+
+  def call(conn, {:error, code}) do
+    render_error(conn, 422, code: code)
   end
 
   # Guardian.Plug.EnsureAuthenticated 验证失败回调
@@ -38,5 +51,10 @@ defmodule OsBlogWeb.FallbackController do
     |> put_status(status)
     |> put_view(OsBlogWeb.ErrorView)
     |> render("#{status}.json", assigns)
+  end
+
+  defp validation_error(conn, chset) do
+    errors = OsBlog.ChangesetView.translate_errors(chset)
+    render_error(conn, 422, code: :validation_error, errors: errors)
   end
 end
