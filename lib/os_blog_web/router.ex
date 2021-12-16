@@ -20,7 +20,7 @@ defmodule OsBlogWeb.Router do
   end
 
   scope "/api", OsBlogWeb do
-    pipe_through :api
+    #    pipe_through :api
     get "/login", ManagerController, :login
 
     #    pipe_through :api_auth

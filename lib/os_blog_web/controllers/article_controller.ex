@@ -25,10 +25,10 @@ defmodule OsBlogWeb.ArticleController do
     render(conn, "show.json", article: article)
   end
 
-  def update(conn, %{"id" => id, "article" => article_params}) do
+  def update(conn, %{"id" => id} = params) do
     article = Articles.get_article!(id)
 
-    with {:ok, %Article{} = article} <- Articles.update_article(article, article_params) do
+    with {:ok, %Article{} = article} <- Articles.update_article(article, params) do
       render(conn, "show.json", article: article)
     end
   end

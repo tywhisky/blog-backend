@@ -48,7 +48,8 @@ defmodule OsBlog.MixProject do
       {:guardian, "~> 2.1"},
       {:scrivener, "~> 2.5"},
       {:scrivener_ecto, "~> 2.0"},
-      {:timex, "~> 3.0"}
+      {:timex, "~> 3.0"},
+      {:ecto_enum, "~> 1.4"}
     ]
   end
 

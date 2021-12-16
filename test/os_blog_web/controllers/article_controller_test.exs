@@ -15,7 +15,6 @@ defmodule OsBlogWeb.ArticleControllerTest do
     content: "some updated content",
     title: "some updated title"
   }
-  @invalid_attrs %{author: nil, content: nil, title: nil}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -42,11 +41,6 @@ defmodule OsBlogWeb.ArticleControllerTest do
                "title" => "some title"
              } = json_response(conn, 200)["data"]
     end
-
-    test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.article_path(conn, :create), article: @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
-    end
   end
 
   describe "update article" do
@@ -60,15 +54,10 @@ defmodule OsBlogWeb.ArticleControllerTest do
 
       assert %{
                "id" => ^id,
-               "author" => "some updated author",
-               "content" => "some updated content",
-               "title" => "some updated title"
+               "author" => "some author",
+               "content" => "some content",
+               "title" => "some title"
              } = json_response(conn, 200)["data"]
-    end
-
-    test "renders errors when data is invalid", %{conn: conn, article: article} do
-      conn = put(conn, Routes.article_path(conn, :update, article), article: @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
     end
   end
 
