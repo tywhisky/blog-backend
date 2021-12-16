@@ -1,39 +1,39 @@
 defmodule OsBlogWeb.CommentController do
   use OsBlogWeb, :controller
 
-  alias OsBlog.Articles.Comments
+  alias OsBlog.Articles.{Comment, Comments}
 
   action_fallback OsBlogWeb.FallbackController
 
-#  def index(conn, params) do
-#    page = Articles.list_articles(params)
-#    render(conn, "index.json", page: page)
-#  end
-#
+  def index(conn, params) do
+    page = Comments.list_comments(params)
+    render(conn, "index.json", page: page)
+  end
+
   def create(conn, params) do
     with {:ok, comment} <- Comments.create(params) do
       render(conn, "show.json", comment: comment)
     end
   end
-#
-#  def show(conn, %{"id" => id}) do
-#    article = Articles.get_article!(id)
-#    render(conn, "show.json", article: article)
-#  end
-#
-#  def update(conn, %{"id" => id} = params) do
-#    article = Articles.get_article!(id)
-#
-#    with {:ok, %Article{} = article} <- Articles.update_article(article, params) do
-#      render(conn, "show.json", article: article)
-#    end
-#  end
-#
-#  def delete(conn, %{"id" => id}) do
-#    article = Articles.get_article!(id)
-#
-#    with {:ok, %Article{}} <- Articles.delete_article(article) do
-#      send_resp(conn, :no_content, "")
-#    end
-#  end
+
+  def show(conn, %{"id" => id}) do
+    comment = Comments.get_comment!(id)
+    render(conn, "show.json", comment: comment)
+  end
+
+  def update(conn, %{"id" => id} = params) do
+    comment = Comments.get_comment!(id)
+
+    with {:ok, comment} <- Comments.update_comment(comment, params) do
+      render(conn, "show.json", comment: comment)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    comment = Comments.get_comment!(id)
+
+    with {:ok, %Comment{}} <- Comments.delete_comment(comment) do
+      send_resp(conn, :no_content, "")
+    end
+  end
 end
