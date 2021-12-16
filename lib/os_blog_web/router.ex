@@ -26,6 +26,7 @@ defmodule OsBlogWeb.Router do
     #    pipe_through :api_auth
     resources "/articles", ArticleController, except: [:new, :edit]
     resources "/managers", ManagerController, except: [:new, :edit]
+    resources "/comments", CommentController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development

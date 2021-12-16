@@ -19,6 +19,16 @@ defmodule OsBlog do
     end
   end
 
+  def context do
+    quote do
+      import Ecto, only: [assoc: 2]
+      import Ecto.Query
+      import Ecto.Changeset
+      alias Ecto.Multi
+      alias OsBlog.Repo
+    end
+  end
+
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])
   end
