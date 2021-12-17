@@ -6,6 +6,8 @@ defmodule OsBlogWeb.FallbackController do
   """
   use OsBlogWeb, :controller
 
+  alias OsBlogWeb.ChangesetView
+
   def call(conn, {:error, %Ecto.Changeset{} = chset}) do
     validation_error(conn, chset)
   end
@@ -54,7 +56,7 @@ defmodule OsBlogWeb.FallbackController do
   end
 
   defp validation_error(conn, chset) do
-    errors = OsBlog.ChangesetView.translate_errors(chset)
+    errors = ChangesetView.translate_errors(chset)
     render_error(conn, 422, code: :validation_error, errors: errors)
   end
 end

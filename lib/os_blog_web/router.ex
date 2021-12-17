@@ -27,6 +27,7 @@ defmodule OsBlogWeb.Router do
     resources "/articles", ArticleController, except: [:new, :edit]
     resources "/managers", ManagerController, except: [:new, :edit]
     resources "/comments", CommentController, except: [:new, :edit]
+    resources "/tags", TagController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
