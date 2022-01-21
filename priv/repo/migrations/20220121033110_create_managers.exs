@@ -5,7 +5,7 @@ defmodule OsBlog.Repo.Migrations.CreateManagers do
     create table(:managers) do
       add :name, :string
       add :email, :string
-      add :password_digest, :string
+      add :password, :string
       add :avatar, :string
 
       timestamps()
