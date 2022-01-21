@@ -1,4 +1,4 @@
-defmodule Phxtemplate.Application do
+defmodule OsBlog.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -9,20 +9,20 @@ defmodule Phxtemplate.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      Phxtemplate.Repo,
+      OsBlog.Repo,
       # Start the Telemetry supervisor
-      PhxtemplateWeb.Telemetry,
+      OsBlogWeb.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Phxtemplate.PubSub},
+      {Phoenix.PubSub, name: OsBlog.PubSub},
       # Start the Endpoint (http/https)
-      PhxtemplateWeb.Endpoint
-      # Start a worker by calling: Phxtemplate.Worker.start_link(arg)
-      # {Phxtemplate.Worker, arg}
+      OsBlogWeb.Endpoint
+      # Start a worker by calling: OsBlog.Worker.start_link(arg)
+      # {OsBlog.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Phxtemplate.Supervisor]
+    opts = [strategy: :one_for_one, name: OsBlog.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -30,7 +30,7 @@ defmodule Phxtemplate.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    PhxtemplateWeb.Endpoint.config_change(changed, removed)
+    OsBlogWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

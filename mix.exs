@@ -1,9 +1,9 @@
-defmodule Phxtemplate.MixProject do
+defmodule OsBlog.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :phxtemplate,
+      app: :os_blog,
       version: "0.1.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule Phxtemplate.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Phxtemplate.Application, []},
+      mod: {OsBlog.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

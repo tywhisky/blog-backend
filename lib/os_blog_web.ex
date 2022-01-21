@@ -1,12 +1,12 @@
-defmodule PhxtemplateWeb do
+defmodule OsBlogWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use PhxtemplateWeb, :controller
-      use PhxtemplateWeb, :view
+      use OsBlogWeb, :controller
+      use OsBlogWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,19 +19,19 @@ defmodule PhxtemplateWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: PhxtemplateWeb
+      use Phoenix.Controller, namespace: OsBlogWeb
 
       import Plug.Conn
-      import PhxtemplateWeb.Gettext
-      alias PhxtemplateWeb.Router.Helpers, as: Routes
+      import OsBlogWeb.Gettext
+      alias OsBlogWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/phxtemplate_web/templates",
-        namespace: PhxtemplateWeb
+        root: "lib/os_blog_web/templates",
+        namespace: OsBlogWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -54,7 +54,7 @@ defmodule PhxtemplateWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import PhxtemplateWeb.Gettext
+      import OsBlogWeb.Gettext
     end
   end
 
@@ -63,9 +63,9 @@ defmodule PhxtemplateWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import PhxtemplateWeb.ErrorHelpers
-      import PhxtemplateWeb.Gettext
-      alias PhxtemplateWeb.Router.Helpers, as: Routes
+      import OsBlogWeb.ErrorHelpers
+      import OsBlogWeb.Gettext
+      alias OsBlogWeb.Router.Helpers, as: Routes
     end
   end
 

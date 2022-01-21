@@ -1,4 +1,4 @@
-defmodule PhxtemplateWeb.ErrorHelpers do
+defmodule OsBlogWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -25,9 +25,9 @@ defmodule PhxtemplateWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(PhxtemplateWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(OsBlogWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(PhxtemplateWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(OsBlogWeb.Gettext, "errors", msg, opts)
     end
   end
 end

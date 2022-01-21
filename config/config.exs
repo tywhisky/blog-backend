@@ -7,15 +7,15 @@
 # General application configuration
 import Config
 
-config :phxtemplate,
-  ecto_repos: [Phxtemplate.Repo]
+config :os_blog,
+  ecto_repos: [OsBlog.Repo]
 
 # Configures the endpoint
-config :phxtemplate, PhxtemplateWeb.Endpoint,
+config :os_blog, OsBlogWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: PhxtemplateWeb.ErrorView, accepts: ~w(json), layout: false],
-  pubsub_server: Phxtemplate.PubSub,
-  live_view: [signing_salt: "D5F3I6Jm"]
+  render_errors: [view: OsBlogWeb.ErrorView, accepts: ~w(json), layout: false],
+  pubsub_server: OsBlog.PubSub,
+  live_view: [signing_salt: "/gstwazU"]
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -1,4 +1,4 @@
-defmodule Phxtemplate.DataCase do
+defmodule OsBlog.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Phxtemplate.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Phxtemplate.DataCase, async: true`, although
+  by setting `use OsBlog.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,17 +18,17 @@ defmodule Phxtemplate.DataCase do
 
   using do
     quote do
-      alias Phxtemplate.Repo
+      alias OsBlog.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Phxtemplate.DataCase
+      import OsBlog.DataCase
     end
   end
 
   setup tags do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Phxtemplate.Repo, shared: not tags[:async])
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(OsBlog.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
     :ok
   end

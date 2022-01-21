@@ -1,6 +1,6 @@
-defmodule Phxtemplate do
+defmodule OsBlog do
   @moduledoc """
-  Phxtemplate keeps the contexts that define your domain
+  OsBlog keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

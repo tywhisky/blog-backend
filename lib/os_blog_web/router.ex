@@ -1,11 +1,11 @@
-defmodule PhxtemplateWeb.Router do
-  use PhxtemplateWeb, :router
+defmodule OsBlogWeb.Router do
+  use OsBlogWeb, :router
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/api", PhxtemplateWeb do
+  scope "/api", OsBlogWeb do
     pipe_through :api
   end
 
@@ -21,7 +21,7 @@ defmodule PhxtemplateWeb.Router do
 
     scope "/" do
       pipe_through [:fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: PhxtemplateWeb.Telemetry
+      live_dashboard "/dashboard", metrics: OsBlogWeb.Telemetry
     end
   end
 end

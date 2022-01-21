@@ -1,5 +1,5 @@
-defmodule PhxtemplateWeb.ErrorView do
-  use PhxtemplateWeb, :view
+defmodule OsBlogWeb.ErrorView do
+  use OsBlogWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
