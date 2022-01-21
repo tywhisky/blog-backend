@@ -5,7 +5,7 @@
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     OsBlog.Repo.insert!(%OsBlog.SomeSchema{})
+#     Phxtemplate.Repo.insert!(%Phxtemplate.SomeSchema{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.

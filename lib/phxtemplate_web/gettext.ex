@@ -1,11 +1,11 @@
-defmodule OsBlogWeb.Gettext do
+defmodule PhxtemplateWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import OsBlogWeb.Gettext
+      import PhxtemplateWeb.Gettext
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -20,5 +20,5 @@ defmodule OsBlogWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :os_blog
+  use Gettext, otp_app: :phxtemplate
 end

@@ -1,4 +1,4 @@
-defmodule OsBlogWeb.Telemetry do
+defmodule PhxtemplateWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -31,23 +31,23 @@ defmodule OsBlogWeb.Telemetry do
       ),
 
       # Database Metrics
-      summary("os_blog.repo.query.total_time",
+      summary("phxtemplate.repo.query.total_time",
         unit: {:native, :millisecond},
         description: "The sum of the other measurements"
       ),
-      summary("os_blog.repo.query.decode_time",
+      summary("phxtemplate.repo.query.decode_time",
         unit: {:native, :millisecond},
         description: "The time spent decoding the data received from the database"
       ),
-      summary("os_blog.repo.query.query_time",
+      summary("phxtemplate.repo.query.query_time",
         unit: {:native, :millisecond},
         description: "The time spent executing the query"
       ),
-      summary("os_blog.repo.query.queue_time",
+      summary("phxtemplate.repo.query.queue_time",
         unit: {:native, :millisecond},
         description: "The time spent waiting for a database connection"
       ),
-      summary("os_blog.repo.query.idle_time",
+      summary("phxtemplate.repo.query.idle_time",
         unit: {:native, :millisecond},
         description:
           "The time the connection spent waiting before being checked out for the query"
@@ -65,7 +65,7 @@ defmodule OsBlogWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {OsBlogWeb, :count_users, []}
+      # {PhxtemplateWeb, :count_users, []}
     ]
   end
 end

@@ -1,4 +1,4 @@
-# OsBlog
+# Phxtemplate
 
 To start your Phoenix server:
 

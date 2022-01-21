@@ -1,9 +1,9 @@
-defmodule OsBlog.MixProject do
+defmodule Phxtemplate.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :os_blog,
+      app: :phxtemplate,
       version: "0.1.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule OsBlog.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {OsBlog.Application, []},
+      mod: {Phxtemplate.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -38,18 +38,11 @@ defmodule OsBlog.MixProject do
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_dashboard, "~> 0.5"},
-      {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"},
-      {:bcrypt_elixir, "~> 2.0"},
-      {:guardian, "~> 2.1"},
-      {:scrivener, "~> 2.5"},
-      {:scrivener_ecto, "~> 2.0"},
-      {:timex, "~> 3.0"},
-      {:ecto_enum, "~> 1.4"}
+      {:plug_cowboy, "~> 2.5"}
     ]
   end
 
@@ -64,9 +57,7 @@ defmodule OsBlog.MixProject do
       setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      s: ["phx.server"],
-      p: ["MIX_ENV=prod phx.server &"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
 end

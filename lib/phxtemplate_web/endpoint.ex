@@ -1,13 +1,13 @@
-defmodule OsBlogWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :os_blog
+defmodule PhxtemplateWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :phxtemplate
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_os_blog_key",
-    signing_salt: "J5NtVgaQ"
+    key: "_phxtemplate_key",
+    signing_salt: "oWgEyXpo"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
@@ -18,7 +18,7 @@ defmodule OsBlogWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :os_blog,
+    from: :phxtemplate,
     gzip: false,
     only: ~w(assets fonts images favicon.ico robots.txt)
 
@@ -26,7 +26,7 @@ defmodule OsBlogWeb.Endpoint do
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :os_blog
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :phxtemplate
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -44,5 +44,5 @@ defmodule OsBlogWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug OsBlogWeb.Router
+  plug PhxtemplateWeb.Router
 end

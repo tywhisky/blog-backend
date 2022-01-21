@@ -1,10 +1,10 @@
 import Config
 
 # Configure your database
-config :os_blog, OsBlog.Repo,
+config :phxtemplate, Phxtemplate.Repo,
   username: "postgres",
   password: "postgres",
-  database: "os_blog_dev",
+  database: "phxtemplate_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,14 +15,14 @@ config :os_blog, OsBlog.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :os_blog, OsBlogWeb.Endpoint,
+config :phxtemplate, PhxtemplateWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "bDzJXtkh9HctD9It/fZfHLCTAStwDUK0WEs8vvtmMTo1ZZid4TM3vLTD2ScE8dke",
+  secret_key_base: "Z0Huol5qLaa+vBYMApBk5ATHGOTnpNQURBp7+Hv8m8g9Ae/jTs1xpq7Eio1qhdKJ",
   watchers: []
 
 # ## SSL Support

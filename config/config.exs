@@ -7,33 +7,15 @@
 # General application configuration
 import Config
 
-config :os_blog,
-  ecto_repos: [OsBlog.Repo]
+config :phxtemplate,
+  ecto_repos: [Phxtemplate.Repo]
 
 # Configures the endpoint
-config :os_blog, OsBlogWeb.Endpoint,
+config :phxtemplate, PhxtemplateWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: OsBlogWeb.ErrorView, accepts: ~w(json), layout: false],
-  pubsub_server: OsBlog.PubSub,
-  live_view: [signing_salt: "zbMCUEzc"]
-
-config :os_blog, OsBlog.Guardian,
-  issuer: "OsBlog",
-  allowed_drift: 2000,
-  ttl: {20, :days},
-  secret_key: "59Vf0qAAzBJmbj7SCg4YNz18TvAx2oiSyntOG+vr4UQ="
-
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :os_blog, OsBlog.Mailer, adapter: Swoosh.Adapters.Local
-
-# Swoosh API client is needed for adapters other than SMTP.
-config :swoosh, :api_client, false
+  render_errors: [view: PhxtemplateWeb.ErrorView, accepts: ~w(json), layout: false],
+  pubsub_server: Phxtemplate.PubSub,
+  live_view: [signing_salt: "D5F3I6Jm"]
 
 # Configures Elixir's Logger
 config :logger, :console,
