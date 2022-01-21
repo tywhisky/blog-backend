@@ -5,8 +5,12 @@ defmodule OsBlogWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", OsBlogWeb do
+  scope "/api" do
     pipe_through :api
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: OsBlogWeb.Schema
+
+    forward "/", Absinthe.Plug, schema: OsBlogWeb.Schema
   end
 
   # Enables LiveDashboard only for development
