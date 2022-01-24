@@ -24,6 +24,7 @@ defmodule OsBlog do
       import Ecto.Changeset
 
       alias Ecto.Multi
+      alias OsBlog.Repo
     end
   end
 

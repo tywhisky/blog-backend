@@ -7,6 +7,7 @@ defmodule OsBlog.Repo.Migrations.CreateArticles do
       add :cover, :string
       add :clicks, :integer
       add :status, :string
+      add :body, :string
       add :category_id, references(:categories)
 
       timestamps()

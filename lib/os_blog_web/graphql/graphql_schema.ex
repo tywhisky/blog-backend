@@ -2,10 +2,14 @@ defmodule OsBlogWeb.Schema do
   use Absinthe.Schema
 
   alias OsBlogWeb.Schema.{
-    ManagerTypes
+    ManagerTypes,
+    ArticleTypes,
+    CategoryTypes
   }
 
   import_types(ManagerTypes)
+  import_types(ArticleTypes)
+  import_types(CategoryTypes)
 
   query do
     import_fields(:manager_queries)
@@ -13,5 +17,6 @@ defmodule OsBlogWeb.Schema do
 
   mutation do
     import_fields(:manager_mutations)
+    import_fields(:article_mutations)
   end
 end

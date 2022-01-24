@@ -58,6 +58,13 @@ defmodule OsBlogWeb do
     end
   end
 
+  def schema do
+    quote do
+      use Absinthe.Schema.Notation
+      import Absinthe.Resolution.Helpers, only: [dataloader: 1, dataloader: 2, dataloader: 3]
+    end
+  end
+
   defp view_helpers do
     quote do
       # Import basic rendering functionality (render, render_layout, etc)
