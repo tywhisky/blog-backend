@@ -45,7 +45,9 @@ defmodule OsBlog.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:absinthe, "~> 1.6"},
       {:absinthe_plug, "~> 1.5"},
-      {:argon2_elixir, "~> 3.0"}
+      {:argon2_elixir, "~> 3.0"},
+      {:guardian, "~> 2.0"},
+      {:cors_plug, "~> 2.0"}
     ]
   end
 

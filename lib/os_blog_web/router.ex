@@ -5,8 +5,19 @@ defmodule OsBlogWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :graphql_auth do
+    plug CORSPlug
+    plug OsBlogWeb.Plugs.PutContextForGraphql
+  end
+
+  pipeline :browser_auth do
+    plug Guardian.Plug.Pipeline, module: OsBlog.Guardian, error_handler: OsBlog.Guardian
+    plug Guardian.Plug.VerifyHeader, refresh_from_cookie: [exchange_from: "access"]
+    plug Guardian.Plug.EnsureAuthenticated
+  end
+
   scope "/api" do
-    pipe_through :api
+    pipe_through [:graphql_auth]
 
     forward "/graphiql", Absinthe.Plug.GraphiQL, schema: OsBlogWeb.Schema
 

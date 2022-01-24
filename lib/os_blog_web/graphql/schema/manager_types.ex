@@ -10,6 +10,10 @@ defmodule OsBlogWeb.Schema.ManagerTypes do
     field :avatar, :string, description: "头像"
   end
 
+  object :session do
+    field :token, :string, description: "Token"
+  end
+
   input_object :update_manager_input do
     field :name, :string, description: "名字"
     field :email, :string, description: "邮箱"
@@ -24,10 +28,17 @@ defmodule OsBlogWeb.Schema.ManagerTypes do
   end
 
   object :manager_mutations do
-    field :update_manager, type: :manager, description: "更新个人信息" do
-      arg(:manager, non_null(:update_manager_input), description: "个人信息")
+    field :login, type: :session, description: "登陆" do
+      arg :email, non_null(:string), description: "邮箱"
+      arg :password, non_null(:string), description: "密码"
 
-      resolve(&ManagerResolver.update_manager/3)
+      resolve &ManagerResolver.login/3
+    end
+
+    field :update_manager, type: :manager, description: "更新个人信息" do
+      arg :manager, non_null(:update_manager_input), description: "个人信息"
+
+      resolve &ManagerResolver.update_manager/3
     end
   end
 end

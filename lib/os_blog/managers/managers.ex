@@ -16,4 +16,6 @@ defmodule OsBlog.Managers do
     |> Manager.update_changeset(attrs)
     |> Repo.update()
   end
+
+  def get_manager_by(params), do: Repo.get_by(Manager, params)
 end
