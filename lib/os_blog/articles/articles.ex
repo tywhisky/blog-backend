@@ -8,4 +8,6 @@ defmodule OsBlog.Articles do
     |> Article.create_changeset(attrs)
     |> Repo.insert()
   end
+
+  def get_article!(id), do: Repo.get!(Article, id)
 end

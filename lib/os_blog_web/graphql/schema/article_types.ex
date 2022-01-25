@@ -17,7 +17,7 @@ defmodule OsBlogWeb.Schema.ArticleTypes do
 
     field :category, :category,
       description: "文章分类",
-      resolve: dataloader(Category, :name, use_parent: false)
+      resolve: dataloader(OsBlogDataloader)
   end
 
   input_object :create_article_input do
@@ -25,6 +25,13 @@ defmodule OsBlogWeb.Schema.ArticleTypes do
     field :cover, :string, description: "文章封面"
     field :body, :string, description: "文章内容"
     field :category_id, :string, description: "文章分类ID"
+  end
+
+  object :article_queries do
+    field :article, :article, description: "文章详情" do
+      arg :id, non_null(:id), description: "ID"
+      resolve &ArticleResolver.get_article/3
+    end
   end
 
   object :article_mutations do
