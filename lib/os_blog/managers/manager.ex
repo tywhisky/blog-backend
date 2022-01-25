@@ -1,6 +1,6 @@
 defmodule OsBlog.Managers.Manager do
-  use Ecto.Schema
-  import Ecto.Changeset
+  use OsBlog, :schema
+
   import Argon2
 
   schema "managers" do

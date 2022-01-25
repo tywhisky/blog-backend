@@ -9,7 +9,8 @@ defmodule OsBlogWeb.Schema do
     ArticleTypes,
     CategoryTypes,
     LinkTypes,
-    CommentTypes
+    CommentTypes,
+    SystemInfoTypes
   }
 
   import_types(PaginationTypes)
@@ -18,6 +19,7 @@ defmodule OsBlogWeb.Schema do
   import_types(CategoryTypes)
   import_types(LinkTypes)
   import_types(CommentTypes)
+  import_types(SystemInfoTypes)
 
   query do
     import_fields(:manager_queries)
@@ -25,6 +27,7 @@ defmodule OsBlogWeb.Schema do
     import_fields(:category_queries)
     import_fields(:link_queries)
     import_fields(:comment_queries)
+    import_fields(:system_info_queries)
   end
 
   mutation do
@@ -33,6 +36,7 @@ defmodule OsBlogWeb.Schema do
     import_fields(:category_mutations)
     import_fields(:link_mutations)
     import_fields(:comment_mutations)
+    import_fields(:system_info_mutations)
   end
 
   def context(ctx) do
