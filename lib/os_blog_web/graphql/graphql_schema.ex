@@ -4,11 +4,13 @@ defmodule OsBlogWeb.Schema do
   import Ecto.Query
 
   alias OsBlogWeb.Schema.{
+    PaginationTypes,
     ManagerTypes,
     ArticleTypes,
     CategoryTypes
   }
 
+  import_types(PaginationTypes)
   import_types(ManagerTypes)
   import_types(ArticleTypes)
   import_types(CategoryTypes)
@@ -50,13 +52,4 @@ defmodule OsBlogWeb.Schema do
   end
 
   defp dataloader_query(query, _params), do: query
-
-  defp dataloader_fetcher({_field, args}, resources) do
-    {fetcher, args} = Map.pop!(args, :fetcher)
-
-    case Function.info(fetcher, :arity) do
-      {_, 1} -> apply(fetcher, [resources])
-      _ -> apply(fetcher, [resources, args])
-    end
-  end
 end

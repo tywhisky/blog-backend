@@ -51,6 +51,12 @@ defmodule OsBlogWeb do
     end
   end
 
+  def resolver do
+    quote do
+      import OsBlogWeb.ResolverHelpers
+    end
+  end
+
   def channel do
     quote do
       use Phoenix.Channel
@@ -62,17 +68,37 @@ defmodule OsBlogWeb do
     quote do
       use Absinthe.Schema.Notation
       import Absinthe.Resolution.Helpers, only: [dataloader: 1, dataloader: 2, dataloader: 3]
+      import OsBlogWeb.SchemaHelpers
     end
   end
 
   defp view_helpers do
     quote do
+      # Use all HTML functionality (forms, tags, etc)
+      use Phoenix.HTML
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
       import OsBlogWeb.ErrorHelpers
       import OsBlogWeb.Gettext
       alias OsBlogWeb.Router.Helpers, as: Routes
+
+      def render_page(page, item_mapper) do
+        %{
+          items: Enum.map(page.entries, item_mapper),
+          page_info: page_info(page)
+        }
+      end
+
+      defp page_info(%Scrivener.Page{} = page) do
+        %{
+          type: "page",
+          current: page.page_number,
+          page_size: page.page_size,
+          total_pages: page.total_pages,
+          total_count: page.total_entries
+        }
+      end
     end
   end
 

@@ -1,5 +1,5 @@
 defmodule OsBlogWeb.Schema.ManagerTypes do
-  use Absinthe.Schema.Notation
+  use OsBlogWeb, :schema
 
   alias OsBlogWeb.Resolvers.ManagerResolver
 

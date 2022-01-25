@@ -2,7 +2,6 @@ defmodule OsBlogWeb.Schema.ArticleTypes do
   use OsBlogWeb, :schema
 
   alias OsBlogWeb.Resolvers.ArticleResolver
-  alias OsBlog.Articles.Category
   alias OsBlog.ArticleStatusEnum
 
   enum :article_status, values: ArticleStatusEnum.values()
@@ -20,6 +19,8 @@ defmodule OsBlogWeb.Schema.ArticleTypes do
       resolve: dataloader(OsBlogDataloader)
   end
 
+  payload_paginate(:articles_payload, :article)
+
   input_object :create_article_input do
     field :title, non_null(:string), description: "文章标题"
     field :cover, :string, description: "文章封面"
@@ -31,6 +32,17 @@ defmodule OsBlogWeb.Schema.ArticleTypes do
     field :article, :article, description: "文章详情" do
       arg :id, non_null(:id), description: "ID"
       resolve &ArticleResolver.get_article/3
+    end
+
+    field :articles, :articles_payload, description: "文章列表" do
+      arg :page_params, :page_params, description: "页码信息"
+      arg :title, :string, description: "文章标题"
+      arg :cover, :string, description: "文章封面"
+      arg :clicks, :integer, description: "点击量"
+      arg :status, :article_status, description: "文章状态"
+      arg :category_id, :integer, description: "分类ID"
+
+      resolve &ArticleResolver.list_articles/3
     end
   end
 

@@ -3,6 +3,8 @@ defmodule OsBlog.Articles.Article do
   alias OsBlog.Articles.Category
   alias OsBlog.ArticleStatusEnum
 
+  @type t :: %__MODULE__{}
+
   schema "articles" do
     field :title, :string
     field :body, :string

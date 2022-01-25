@@ -48,7 +48,9 @@ defmodule OsBlog.MixProject do
       {:dataloader, "~> 1.0"},
       {:argon2_elixir, "~> 3.0"},
       {:guardian, "~> 2.0"},
-      {:cors_plug, "~> 2.0"}
+      {:cors_plug, "~> 2.0"},
+      {:scrivener, "~> 2.7"},
+      {:scrivener_ecto, "~> 2.0"}
     ]
   end
 
