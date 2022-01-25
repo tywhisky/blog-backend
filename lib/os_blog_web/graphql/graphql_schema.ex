@@ -18,6 +18,7 @@ defmodule OsBlogWeb.Schema do
   query do
     import_fields(:manager_queries)
     import_fields(:article_queries)
+    import_fields(:category_queries)
   end
 
   mutation do
