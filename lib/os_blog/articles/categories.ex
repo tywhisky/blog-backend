@@ -5,6 +5,8 @@ defmodule OsBlog.Articles.Categories do
 
   import OsBlog.EctoHelpers, only: [filter_by: 3]
 
+  def get_category(id), do: Repo.get(Category, id)
+
   def create_category(attrs) do
     %Category{}
     |> Category.create_changeset(attrs)
@@ -19,16 +21,14 @@ defmodule OsBlog.Articles.Categories do
     |> Repo.paginate(params[:page_params])
   end
 
-  def update_category(id, attrs) do
-    Category
-    |> Repo.get(id)
+  def update_category(category, attrs) do
+    category
     |> Category.update_changeset(attrs)
     |> Repo.update()
   end
 
-  def delete_category(id) do
-    Category
-    |> Repo.get(id)
+  def delete_category(category) do
+    category
     |> Category.delete_changeset()
     |> Repo.delete()
   end
