@@ -7,24 +7,28 @@ defmodule OsBlogWeb.Schema do
     PaginationTypes,
     ManagerTypes,
     ArticleTypes,
-    CategoryTypes
+    CategoryTypes,
+    LinkTypes
   }
 
   import_types(PaginationTypes)
   import_types(ManagerTypes)
   import_types(ArticleTypes)
   import_types(CategoryTypes)
+  import_types(LinkTypes)
 
   query do
     import_fields(:manager_queries)
     import_fields(:article_queries)
     import_fields(:category_queries)
+    import_fields(:link_queries)
   end
 
   mutation do
     import_fields(:manager_mutations)
     import_fields(:article_mutations)
     import_fields(:category_mutations)
+    import_fields(:link_mutations)
   end
 
   def context(ctx) do
