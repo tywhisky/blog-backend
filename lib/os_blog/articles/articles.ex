@@ -11,6 +11,12 @@ defmodule OsBlog.Articles do
     |> Repo.insert()
   end
 
+  def update_article(article, attr) do
+    article
+    |> Article.update_changeset(attr)
+    |> Repo.update()
+  end
+
   def get_article!(id), do: Repo.get!(Article, id)
 
   def list_articles(params \\ %{}) do

@@ -28,6 +28,15 @@ defmodule OsBlogWeb.Schema.ArticleTypes do
     field :category_id, :string, description: "文章分类ID"
   end
 
+  input_object :update_article_input do
+    field :title, :string, description: "文章标题"
+    field :body, :string, description: "文章内容"
+    field :clicks, :integer, description: "点击量"
+    field :cover, :string, description: "文章封面"
+    field :status, :article_status, description: "文章状态"
+    field :category_id, :string, description: "文章分类ID"
+  end
+
   object :article_queries do
     field :article, :article, description: "文章详情" do
       arg :id, non_null(:id), description: "ID"
@@ -51,6 +60,13 @@ defmodule OsBlogWeb.Schema.ArticleTypes do
       arg :article, non_null(:create_article_input), description: "文章信息"
 
       resolve &ArticleResolver.create_article/3
+    end
+
+    field :update_article, type: :article, description: "更新文章" do
+      arg :id, non_null(:id), description: "文章ID"
+      arg :article, non_null(:update_article_input), description: "文章信息"
+
+      resolve &ArticleResolver.update_article/3
     end
   end
 end

@@ -22,4 +22,9 @@ defmodule OsBlog.Articles.Article do
     |> cast(attrs, [:title, :cover, :body, :category_id])
     |> validate_required([:title])
   end
+
+  def update_changeset(article, attrs) do
+    article
+    |> cast(attrs, [:title, :body, :cover, :clicks, :status, :category_id])
+  end
 end
