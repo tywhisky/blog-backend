@@ -18,4 +18,6 @@ defmodule OsBlogWeb.Resolvers.ArticleResolver do
   def list_articles(_parent, args, _) do
     Articles.list_articles(args) |> render_payload()
   end
+
+  def delete_article(_parent, %{id: id}, _), do: Articles.delete_article(id)
 end

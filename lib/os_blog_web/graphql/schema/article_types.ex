@@ -68,5 +68,11 @@ defmodule OsBlogWeb.Schema.ArticleTypes do
 
       resolve &ArticleResolver.update_article/3
     end
+
+    field :delete_article, type: :article, description: "删除文章" do
+      arg :id, non_null(:id), description: "文章ID"
+
+      resolve &ArticleResolver.delete_article/3
+    end
   end
 end

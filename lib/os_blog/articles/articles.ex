@@ -26,4 +26,9 @@ defmodule OsBlog.Articles do
     |> order_by(desc: :inserted_at)
     |> Repo.paginate(params[:page_params])
   end
+
+  def delete_article(id) do
+    get_article!(id)
+    |> Repo.delete()
+  end
 end
