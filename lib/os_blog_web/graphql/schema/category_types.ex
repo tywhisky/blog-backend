@@ -10,7 +10,7 @@ defmodule OsBlogWeb.Schema.CategoryTypes do
 
   payload_paginate(:categories_payload, :category)
 
-  input_object :create_category_input do
+  input_object :category_input do
     field :name, non_null(:string), description: "文章分类"
   end
 
@@ -25,9 +25,16 @@ defmodule OsBlogWeb.Schema.CategoryTypes do
 
   object :category_mutations do
     field :create_category, type: :category, description: "新建分类" do
-      arg :category, non_null(:create_category_input), description: "分类信息"
+      arg :category, non_null(:category_input), description: "分类信息"
 
       resolve &CategoryResolver.create_category/3
+    end
+
+    field :update_category, type: :category, description: "更新分类" do
+      arg :id, non_null(:id), description: "分类ID"
+      arg :category, non_null(:category_input), description: "分类信息"
+
+      resolve &CategoryResolver.update_category/3
     end
   end
 end

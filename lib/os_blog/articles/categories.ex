@@ -18,4 +18,11 @@ defmodule OsBlog.Articles.Categories do
     |> order_by(desc: :inserted_at)
     |> Repo.paginate(params[:page_params])
   end
+
+  def update_category(id, attrs) do
+    Category
+    |> Repo.get(id)
+    |> Category.update_changeset(attrs)
+    |> Repo.update()
+  end
 end

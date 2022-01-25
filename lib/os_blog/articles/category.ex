@@ -16,4 +16,9 @@ defmodule OsBlog.Articles.Category do
     |> cast(attrs, [:name])
     |> validate_required([:name])
   end
+
+  def update_changeset(category, attrs) do
+    category
+    |> cast(attrs, [:name])
+  end
 end
