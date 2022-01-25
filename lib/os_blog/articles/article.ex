@@ -1,5 +1,6 @@
 defmodule OsBlog.Articles.Article do
   use OsBlog, :schema
+
   alias OsBlog.Articles.Category
   alias OsBlog.ArticleStatusEnum
 
