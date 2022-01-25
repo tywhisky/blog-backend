@@ -25,4 +25,11 @@ defmodule OsBlog.Articles.Categories do
     |> Category.update_changeset(attrs)
     |> Repo.update()
   end
+
+  def delete_category(id) do
+    Category
+    |> Repo.get(id)
+    |> Category.delete_changeset()
+    |> Repo.delete()
+  end
 end

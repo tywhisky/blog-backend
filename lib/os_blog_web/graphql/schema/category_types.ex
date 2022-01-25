@@ -36,5 +36,11 @@ defmodule OsBlogWeb.Schema.CategoryTypes do
 
       resolve &CategoryResolver.update_category/3
     end
+
+    field :delete_category, type: :category, description: "删除分类" do
+      arg :id, non_null(:id), description: "分类ID"
+
+      resolve &CategoryResolver.delete_category/3
+    end
   end
 end

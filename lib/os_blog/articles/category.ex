@@ -21,4 +21,10 @@ defmodule OsBlog.Articles.Category do
     category
     |> cast(attrs, [:name])
   end
+
+  def delete_changeset(category) do
+    category
+    |> change()
+    |> no_assoc_constraint(:articles)
+  end
 end

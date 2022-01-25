@@ -14,4 +14,8 @@ defmodule OsBlogWeb.Resolvers.CategoryResolver do
   def update_category(_parent, %{id: id, category: args}, _) do
     Categories.update_category(id, args)
   end
+
+  def delete_category(_parent, %{id: id}, _) do
+    Categories.delete_category(id)
+  end
 end
