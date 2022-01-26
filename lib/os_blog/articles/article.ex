@@ -2,6 +2,7 @@ defmodule OsBlog.Articles.Article do
   use OsBlog, :schema
 
   alias OsBlog.Articles.Category
+  alias OsBlog.Comments.Comment
   alias OsBlog.ArticleStatusEnum
 
   @type t :: %__MODULE__{}
@@ -14,6 +15,8 @@ defmodule OsBlog.Articles.Article do
     field :status, Ecto.Enum, values: ArticleStatusEnum.values(), default: :pending
 
     belongs_to :category, Category
+
+    has_many :comment, Comment, on_delete: :delete_all
 
     timestamps()
   end

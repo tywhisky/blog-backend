@@ -20,8 +20,8 @@ defmodule OsBlog.Comments.Comment do
 
   def create_changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:body, :creator, :creator_email])
-    |> validate_required([:body, :creator, :creator_email])
+    |> cast(attrs, [:body, :creator, :creator_email, :article_id])
+    |> validate_required([:body, :creator, :creator_email, :article_id])
   end
 
   def update_changeset(comment, attrs) do
