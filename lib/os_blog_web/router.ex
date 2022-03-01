@@ -1,6 +1,14 @@
 defmodule OsBlogWeb.Router do
   use OsBlogWeb, :router
 
+  pipeline :browser do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -17,11 +25,15 @@ defmodule OsBlogWeb.Router do
   end
 
   scope "/api" do
-    pipe_through [:graphql_auth]
+    pipe_through :graphql_auth
+
+    forward "/graphql", Absinthe.Plug, schema: OsBlogWeb.Schema
+  end
+
+  scope "/api" do
+    pipe_through [:browser, :browser_auth]
 
     forward "/graphiql", Absinthe.Plug.GraphiQL, schema: OsBlogWeb.Schema
-
-    forward "/", Absinthe.Plug, schema: OsBlogWeb.Schema
   end
 
   # Enables LiveDashboard only for development

@@ -1,4 +1,6 @@
 defmodule OsBlog.Guardian do
+  import Plug.Conn
+
   use Guardian, otp_app: :os_blog
 
   alias OsBlog.Managers
@@ -27,14 +29,17 @@ defmodule OsBlog.Guardian do
 
   def get_manager() do
     case Managers.get_manager() do
-      %Manager{} = manager -> {:ok, manager}
+      {:ok, manager} -> {:ok, manager}
       _ -> {:error, :not_found}
     end
   end
 
   # Guardian pipeline error_handler
-  def auth_error(conn, _, _) do
-    request_path = URI.encode_www_form(conn.request_path)
-    Phoenix.Controller.redirect(conn, to: "/login?redirect-to=#{request_path}")
+  def auth_error(conn, {type, _reason}, _opts) do
+    body = to_string(type)
+
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(401, body)
   end
 end

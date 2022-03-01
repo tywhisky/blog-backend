@@ -5,4 +5,8 @@ defmodule OsBlogWeb.ResolverHelpers do
   end
 
   def render_payload(_), do: {:error, :not_found}
+
+  def current_user(%{context: %{current_user: %{"manager" => manager}}}), do: manager
+
+  def current_user(_resolution), do: nil
 end

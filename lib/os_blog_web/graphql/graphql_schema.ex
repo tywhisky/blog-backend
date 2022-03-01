@@ -3,6 +3,8 @@ defmodule OsBlogWeb.Schema do
 
   import Ecto.Query
 
+  alias OsBlogWeb.Middlewares.Authentication
+
   alias OsBlogWeb.Schema.{
     PaginationTypes,
     ManagerTypes,
@@ -38,6 +40,21 @@ defmodule OsBlogWeb.Schema do
     import_fields(:comment_mutations)
     import_fields(:system_info_mutations)
   end
+
+  @skip_authentication_fields [:login]
+
+  def middleware(middlewares, %{identifier: field_name}, %{identifier: identifier})
+      when identifier in [:mutation, :query] do
+    case field_name do
+      field_name when field_name in @skip_authentication_fields ->
+        middlewares
+
+      _ ->
+        [Authentication | middlewares]
+    end
+  end
+
+  def middleware(middlewares, _field, _object), do: middlewares
 
   def context(ctx) do
     configs = [
