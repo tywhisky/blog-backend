@@ -33,7 +33,7 @@ I assume you have installed the PostgreSQL with user and password equals postgre
 > 
 > Change the uri to "graphql"
 > 
-> Get the `token` after login
+> Get the `token` after login with `manager@dev.com/123456`
 > 
 > Add the { authorization: Bearer + `token` } in Headers
 > 
