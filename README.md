@@ -11,10 +11,15 @@ I assume you have installed the PostgreSQL with user and password equals postgre
 ### Setup
 
 > git clone https://github.com/tywhisky/blog-backend.git
+>
 > cd blog-backend
+>
 > mix deps.get
+>
 > mix ecto.create
+>
 > mix ecto.migrate
+>
 > mix run priv/repo/seeds.exs
 
 ### Run
