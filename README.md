@@ -27,6 +27,14 @@ I assume you have installed the PostgreSQL with user and password equals postgre
 
 > mix phx.server
 
-### APIs Docs
+### APIs Docs Usage
 
->http://localhost:4000/api/graphql
+> http://localhost:4000/api/graphiql
+> 
+> Change the uri to "graphql"
+> 
+> Get the `token` after login
+> 
+> Add the { authorization: Bearer + `token` } in Headers
+> 
+> Enjoy yourself
