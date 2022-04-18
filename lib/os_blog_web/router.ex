@@ -31,7 +31,7 @@ defmodule OsBlogWeb.Router do
   end
 
   scope "/api" do
-    pipe_through [:browser, :browser_auth]
+    # pipe_through [:browser, :browser_auth]
 
     forward "/graphiql", Absinthe.Plug.GraphiQL, schema: OsBlogWeb.Schema
   end
